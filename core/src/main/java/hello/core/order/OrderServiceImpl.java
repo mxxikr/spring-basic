@@ -9,25 +9,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderServiceImpl implements OrderService {
-    // 수정자 주입
+    // 필드 주입
+    @Autowired
     private MemberRepository memberRepository;
+    @Autowired
     private DiscountPolicy discountPolicy; // 할인 정책을 인터페이스로 변경하여 유연성을 높임
-
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
-
-    // 수정자 주입
-    @Autowired(required = false)
-    public void setMemberRepository(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
-
-    @Autowired(required = false)
-    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
-        this.discountPolicy = discountPolicy;
-    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
