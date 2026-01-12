@@ -9,17 +9,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderServiceImpl implements OrderService {
-    // 필드 주입
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private DiscountPolicy discountPolicy; // 할인 정책을 인터페이스로 변경하여 유연성을 높임
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy; // 할인 정책을 인터페이스로 변경하여 유연성을 높임
 
-    public void setMemberRepository(MemberRepository memberRepository) {
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
-    }
-
-    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
         this.discountPolicy = discountPolicy;
     }
 
