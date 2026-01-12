@@ -15,6 +15,14 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private DiscountPolicy discountPolicy; // 할인 정책을 인터페이스로 변경하여 유연성을 높임
 
+    public void setMemberRepository(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
+    }
+
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
         Member member = memberRepository.findById(memberId); // 회원 정보를 조회
