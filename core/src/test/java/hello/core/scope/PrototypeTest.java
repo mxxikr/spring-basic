@@ -29,6 +29,8 @@ public class PrototypeTest {
 
     @Scope("prototype")
     static class PrototypeBean {
+        private int count = 0;
+
         @PostConstruct
         public void init() {
             System.out.println("PrototypeBean.init");
